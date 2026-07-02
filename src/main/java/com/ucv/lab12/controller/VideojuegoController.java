@@ -3,7 +3,6 @@ package com.ucv.lab12.controller;
 import com.ucv.lab12.model.Videojuego;
 import com.ucv.lab12.service.VideojuegoService;
 import com.ucv.lab12.service.IVideojuegoService;
-import com.ucv.lab12.util.AlertUtil; // Asegúrate de que esta ruta sea exacta
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -47,7 +46,6 @@ public class VideojuegoController {
     private void cargarDatosTabla() {
         listaObservable.clear();
         try {
-            // Si tu método en el servicio se llama distinto (ej. listar()), cámbialo aquí
             listaObservable.addAll(videojuegoService.listarTodos());
             tblVideojuegos.setItems(listaObservable);
         } catch (Exception e) {
@@ -73,12 +71,10 @@ public class VideojuegoController {
                     idDistribuidor
             );
 
-            // Si tu método se llama 'insertar' o 'guardar' en lugar de registrar, cámbialo aquí
             videojuegoService.registrar(nuevo);
             cargarDatosTabla();
             limpiarCampos();
 
-            // Reemplazamos temporalmente con alertas nativas de JavaFX para que no dependas de AlertUtil si está fallando
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Éxito");
             alerta.setHeaderText(null);

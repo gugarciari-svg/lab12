@@ -10,11 +10,9 @@ public class Videojuego {
     private int idDesarrollador;
     private int idDistribuidor;
 
-    // Constructor vacío
     public Videojuego() {
     }
 
-    // Constructor completo
     public Videojuego(int idVideojuego, String consola, String nombre, String genero,
                       String clasificacion, String descripcion, int idDesarrollador, int idDistribuidor) {
         this.idVideojuego = idVideojuego;
@@ -27,7 +25,6 @@ public class Videojuego {
         this.idDistribuidor = idDistribuidor;
     }
 
-    // Getters y Setters
     public int getIdVideojuego() { return idVideojuego; }
     public void setIdVideojuego(int idVideojuego) { this.idVideojuego = idVideojuego; }
 
@@ -50,5 +47,5 @@ public class Videojuego {
     public void setIdDesarrollador(int idDesarrollador) { this.idDesarrollador = idDesarrollador; }
 
     public int getIdDistribuidor() { return idDistribuidor; }
-    public void setIdDistribuidor(int idDistribuidor) { this.idDistribuidor = idDistribuidor; }
+    public void setIDistribuidor(int idDistribuidor) { this.idDistribuidor = idDistribuidor; }
 }

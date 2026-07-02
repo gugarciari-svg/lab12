@@ -8,14 +8,13 @@ import java.util.List;
 
 public class VideojuegoRepository implements IVideojuegoRepository {
 
-    // Creamos una instancia de DatabaseConfig para usar su método no-estático
     private final DatabaseConfig dbConfig = new DatabaseConfig();
 
     @Override
     public void registrar(Videojuego videojuego) {
         String sql = "INSERT INTO Videojuego (idVideojuego, Consola, Nombre, Genero, Clasificacion, Descripcion, IDdesarrollador, IDdistribuidor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = dbConfig.getConnection(); // Corregido el acceso al método
+        try (Connection conn = dbConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, videojuego.getIdVideojuego());
@@ -37,7 +36,7 @@ public class VideojuegoRepository implements IVideojuegoRepository {
     public void modificar(Videojuego videojuego) {
         String sql = "UPDATE Videojuego SET Consola = ?, Nombre = ?, Genero = ?, Clasificacion = ?, Descripcion = ?, IDdesarrollador = ?, IDdistribuidor = ? WHERE idVideojuego = ?";
 
-        try (Connection conn = dbConfig.getConnection(); // Corregido el acceso al método
+        try (Connection conn = dbConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, videojuego.getConsola());
@@ -45,9 +44,9 @@ public class VideojuegoRepository implements IVideojuegoRepository {
             ps.setString(3, videojuego.getGenero());
             ps.setString(4, videojuego.getClasificacion());
             ps.setString(5, videojuego.getDescripcion());
-            ps.setInt(6, videojuego.getIdDesarrollador()); // Corregido el orden y el método setInt
-            ps.setInt(7, videojuego.getIdDistribuidor());   // Corregido el orden y el método setInt
-            ps.setInt(8, videojuego.getIdVideojuego());     // Corregido el método setInt
+            ps.setInt(6, videojuego.getIdDesarrollador());
+            ps.setInt(7, videojuego.getIdDistribuidor());
+            ps.setInt(8, videojuego.getIdVideojuego());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -59,7 +58,7 @@ public class VideojuegoRepository implements IVideojuegoRepository {
     public void eliminar(int idVideojuego) {
         String sql = "DELETE FROM Videojuego WHERE idVideojuego = ?";
 
-        try (Connection conn = dbConfig.getConnection(); // Corregido el acceso al método
+        try (Connection conn = dbConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, idVideojuego);
@@ -74,7 +73,7 @@ public class VideojuegoRepository implements IVideojuegoRepository {
         List<Videojuego> lista = new ArrayList<>();
         String sql = "SELECT * FROM Videojuego";
 
-        try (Connection conn = dbConfig.getConnection(); // Corregido el acceso al método
+        try (Connection conn = dbConfig.getConnection();
              Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
 
@@ -101,7 +100,7 @@ public class VideojuegoRepository implements IVideojuegoRepository {
     public Videojuego buscarPorId(int idVideojuego) {
         String sql = "SELECT * FROM Videojuego WHERE idVideojuego = ?";
 
-        try (Connection conn = dbConfig.getConnection(); // Corregido el acceso al método
+        try (Connection conn = dbConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, idVideojuego);
