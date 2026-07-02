@@ -48,7 +48,6 @@ public class DatabaseConfig implements AutoCloseable {
 
     @Override
     public void close() {
-        // Deregistrar drivers registrados por DriverManager para evitar fugas al parar la app
         try {
             Enumeration<Driver> drivers = DriverManager.getDrivers();
             while (drivers.hasMoreElements()) {
@@ -56,11 +55,9 @@ public class DatabaseConfig implements AutoCloseable {
                 try {
                     DriverManager.deregisterDriver(driver);
                 } catch (SQLException ignored) {
-                    // Ignorar errores individuales al cerrar drivers
                 }
             }
         } catch (Exception ignored) {
-            // No se pudo limpiar drivers, pero la aplicación puede continuar
         }
     }
 }
